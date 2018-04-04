@@ -36,9 +36,9 @@ const
   util = require('util');
   /** GLOZADA - LOG > FIN: definir variables */
 
-const PAGE_ACCESS_TOKEN = config.get('pageAccessToken');
-const VERIFY_TOKEN = config.get('validationToken');
-const PUERTO_HTTP = config.get('puertoHttp');
+const PAGE_ACCESS_TOKEN = process.env.PAGEACCESSTOKEN || config.get('pageAccessToken');
+const VERIFY_TOKEN = process.env.VERIFYTOKEN || config.get('validationToken');
+const PUERTO_HTTP = process.env.PUERTOHTTP || config.get('puertoHttp');
 
 var app = express();
 app.set('view engine', 'ejs');
@@ -69,8 +69,9 @@ console.config("[DESPLIEGUE] Bot-IntegracionFBMessenger se esta iniciando...");
 // Sets server port and logs message on success
 //app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.listen(PUERTO_HTTP, function () {
-  console.config('[app.listen] puerto: ' + PUERTO_HTTP);
-  // console.config('[app.listen] PAGE_ACCESS_TOKEN: ' + PAGE_ACCESS_TOKEN);
+  console.config('[app.listen] const PUERTO_HTTP: ' + PUERTO_HTTP);
+  console.config('[app.listen] const PAGE_ACCESS_TOKEN: ' + PAGE_ACCESS_TOKEN);
+  console.config('[app.listen] const VERIFY_TOKEN: ' + VERIFY_TOKEN);
 });
 
 /*
